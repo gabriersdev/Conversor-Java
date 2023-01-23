@@ -18,6 +18,7 @@ public class ConversorMedidas{
         }
     }
 
+
     public BigDecimal converter(String valor, String medidaEntrada, String medidaSaida){
 
         this.valorInicial = new BigDecimal(valor);
@@ -31,6 +32,7 @@ public class ConversorMedidas{
 
         return this.calculoConversao(medidas.indexOf(medidaEntrada), medidas.indexOf(medidaSaida));
     }
+
 
     public BigDecimal calculoConversao(int posicaoMedidaEntrada, int posicaoMedidaSaida){
 
@@ -49,11 +51,4 @@ public class ConversorMedidas{
 
         return resultado;
     }
-
-    public static void main(String[] args) {
-        ConversorMedidas conversorMedidas = new ConversorMedidas();
-
-        System.out.println(conversorMedidas.converter("10", "km", "m"));
-    }
-
 }

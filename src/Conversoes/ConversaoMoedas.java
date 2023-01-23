@@ -6,7 +6,7 @@ import Utilitarios.Strings;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class ConversaoMoedas implements Conversao {
+public class ConversaoMoedas{
 
     private BigDecimal valorInicial;
     private BigDecimal cotacaoEuro = new BigDecimal(5.66);
@@ -15,7 +15,7 @@ public class ConversaoMoedas implements Conversao {
     private BigDecimal cotacaoYene = new BigDecimal(0.04);
     private BigDecimal cotacaoDolarAustraliano = new BigDecimal(3.63);
 
-    @Override
+    
     public BigDecimal converter(String valor, String moeda){
 
         this.valorInicial = new BigDecimal(valor);
@@ -26,7 +26,7 @@ public class ConversaoMoedas implements Conversao {
 
         switch (moeda){
             case "euro":
-                retorno = calculoConversao(this.cotacaoLibra);
+                retorno = calculoConversao(this.cotacaoEuro);
                 break;
 
             case "libra":
@@ -51,6 +51,7 @@ public class ConversaoMoedas implements Conversao {
 
         return retorno;
     }
+
 
     public BigDecimal calculoConversao(BigDecimal cotacao){
         return this.valorInicial.divide(cotacao, 2, RoundingMode.HALF_UP);

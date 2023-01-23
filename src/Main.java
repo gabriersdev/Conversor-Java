@@ -1,12 +1,9 @@
 import Utilitarios.Empty;
 
 import javax.swing.JOptionPane;
-import java.math.BigDecimal;
 
 public class Main {
     public static void main(String[] a) {
-
-        Empty empty = new Empty();
 
         //Criação do array com as opções iniciais de seleção
         String[] opcoes = { "Conversor de moedas", "Conversor de medidas", "Conversor de temperatura"};
@@ -19,7 +16,7 @@ public class Main {
                 opcoes[0] // Opção marcada (selected)
         );
 
-        if(!empty.isEmpty(input)){
+        if(!Empty.isEmpty(input)){
             String valor = (String) JOptionPane.showInputDialog(null,
                     "Valor para a conversão",
                     "Conversor",
