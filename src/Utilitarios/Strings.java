@@ -1,9 +1,12 @@
 package Utilitarios;
 
+import java.util.ArrayList;
+
 public class Strings {
-    public static String tratamentoParam(String string){
-        string = string.replaceAll(" ", "-");
-        string = string.toLowerCase();
-        return string;
+    public static String tratamentoParam(Object string){
+        String stringTratada = String.valueOf(string);
+        stringTratada = stringTratada.replaceAll(" ", "-");
+        stringTratada = stringTratada.toLowerCase();
+        return stringTratada;
     }
 }

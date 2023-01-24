@@ -1,34 +1,72 @@
 package Conversoes;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 public class ConversorTemperatura {
 
-  public double kelvinParaCelsius(double valor){
+  public String converter(BigDecimal valor, String opcao){
+    
+    Double valorConversao = valor.doubleValue();
+    
+    String[] medidas = opcao.split(" ");
+    String medidaSaida = medidas[medidas.length - 1].toLowerCase();
+    Double resultado = 0d;
+
+    switch(opcao){
+      case "Celsius para Kelvin":
+      resultado = this.celsiusParaKelvin(valorConversao);
+      break;
+
+      case "Celsius para Fahrenheit":
+      resultado = this.celsiusParaFahrenheit(valorConversao);
+      break;
+
+      case "Kelvin para Celsius":
+      resultado = this.kelvinParaCelsius(valorConversao);
+      break;
+
+      case "Kelvin para Fahrenheit":
+      resultado = this.kelvinParaFahrenheit(valorConversao);
+      break;
+
+      case "Fahrenheit para Celsius":
+      resultado = this.fahrenheitParaCelsius(valorConversao);
+      break;
+
+      case "Fahrenheit para Kelvin":
+      resultado = this.fahrenheitParaKelvin(valorConversao);
+      break;
+    }
+
+    return resultado + "º " + medidaSaida;
+  }
+
+  private Double kelvinParaCelsius(Double valor){
     return this.formatacao((valor - 273));
   }
 
-  public double kelvinParaFahrenheit(double valor){
+  private Double kelvinParaFahrenheit(Double valor){
     return this.formatacao(((valor - 273) * 1.8 + 32));
   }
 
-  public double celsiusParaKelvin(double valor){
+  private Double celsiusParaKelvin(Double valor){
     return this.formatacao((valor + 273));
   }
 
-  public double celsiusParaFahrenheit(double valor){
+  private Double celsiusParaFahrenheit(Double valor){
     return this.formatacao((valor * 1.8 + 32));
   }
 
-  public double fahrenheitParaCelsius(double valor){
+  private Double fahrenheitParaCelsius(Double valor){
     return this.formatacao(((valor - 32) / 1.8));
   }
 
-  public double fahrenheitParaKelvin(double valor){
+  private Double fahrenheitParaKelvin(Double valor){
     return this.formatacao(((valor - 32) * 5/9 + 273));
   }
 
-  private double formatacao(double valor){
+  private Double formatacao(Double valor){
     DecimalFormat formato = new DecimalFormat("#.##");
     return Double.valueOf(formato.format((valor)).replaceAll(",", "."));
   }

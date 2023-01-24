@@ -18,19 +18,58 @@ public class ConversorMedidas{
         }
     }
 
+    public String[] opcaoParaConverter(String opcao){
+        String[] medidas = new String[2];
 
-    public BigDecimal converter(String valor, String medidaEntrada, String medidaSaida){
+        switch(opcao){
+            case "Quilômetros para Metros":
+            medidas[0] = ("km");
+            medidas[1] = ("m");
+            break;
 
-        this.valorInicial = new BigDecimal(valor);
+            case "Quilômetros para Centímetros":
+            medidas[0] = ("km");
+            medidas[1] = ("cm");
+            break;
 
-        medidaEntrada = Strings.tratamentoParam(medidaEntrada);
-        medidaSaida = Strings.tratamentoParam(medidaSaida);
+            case "Metros para Quilômetros":
+            medidas[0] = ("m");
+            medidas[1] = ("km");
+            break;
 
-        if(!this.medidas.contains(medidaEntrada) && !this.medidas.contains(medidaSaida)){
+            case "Metros para Centímetros":
+            medidas[0] = ("m");
+            medidas[1] = ("cm");
+            break;
+
+            case "Centímetros para Quilômetros":
+            medidas[0] = ("cm");
+            medidas[1] = ("km");
+            break;
+
+            case "Centímetros para Metros":
+            medidas[0] = ("cm");
+            medidas[1] = ("m");
+            break;
+        }
+
+        return medidas;
+    }
+
+    public String converter(BigDecimal valor, String opcao){
+
+        this.valorInicial = valor;
+
+        String[] medidasConversao = this.opcaoParaConverter(opcao);
+        
+        String medidaEntrada = Strings.tratamentoParam(medidasConversao[0]);
+        String medidaSaida = Strings.tratamentoParam(medidasConversao[1]);       
+
+        if(!this.medidas.contains(medidaSaida) && !this.medidas.contains(medidaSaida)){
             throw new ConversaoException("Medida informada não existe");
         }
 
-        return this.calculoConversao(medidas.indexOf(medidaEntrada), medidas.indexOf(medidaSaida));
+        return this.calculoConversao(this.medidas.indexOf(medidaEntrada), this.medidas.indexOf(medidaSaida)) + " " + medidaSaida;
     }
 
 

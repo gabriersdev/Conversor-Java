@@ -15,33 +15,33 @@ public class ConversaoMoedas{
     private BigDecimal cotacaoYene = new BigDecimal(0.04);
     private BigDecimal cotacaoDolarAustraliano = new BigDecimal(3.63);
     
-    public BigDecimal converter(String valor, String moeda){
+    public String converter(BigDecimal valor, String moeda){
 
-        this.valorInicial = new BigDecimal(valor);
+        this.valorInicial = valor;
 
         moeda = Strings.tratamentoParam(moeda);
 
-        BigDecimal retorno = new BigDecimal(0);
+        String retorno;
 
         switch (moeda){
-            case "euro":
-                retorno = calculoConversao(this.cotacaoEuro);
+            case "de-real-para-euro":
+                retorno = "€ " + calculoConversao(this.cotacaoEuro);
                 break;
 
-            case "libra":
-                retorno = calculoConversao(this.cotacaoLibra);
+            case "de-real-para-libra":
+                retorno = "£ " + calculoConversao(this.cotacaoLibra);
                 break;
 
-            case "dolar-americano":
-                retorno = calculoConversao(this.cotacaoDolarAmericano);
+            case "de-real-para-dólar-americano":
+                retorno = "US$ " + calculoConversao(this.cotacaoDolarAmericano);
                 break;
 
-            case "yene":
-                retorno = calculoConversao(this.cotacaoYene);
+            case "de-real-para-yene":
+                retorno = "¥ " + calculoConversao(this.cotacaoYene);
                 break;
 
-            case "dolar-australiano":
-                retorno = calculoConversao(this.cotacaoDolarAustraliano);
+            case "de-real-para-dólar-australiano":
+                retorno = "AUD " + calculoConversao(this.cotacaoDolarAustraliano);
                 break;
 
             default:

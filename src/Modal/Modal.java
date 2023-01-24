@@ -1,5 +1,7 @@
 package Modal;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -40,6 +42,7 @@ public class Modal {
         return input;
     }
     
+
     public static int confirmacao(String mensagem){
 
         int valor = JOptionPane.showConfirmDialog(null, 
