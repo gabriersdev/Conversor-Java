@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class ConversorMedidas{
 
     private String[] array = {"km", "hm", "dam", "m", "dm", "cm", "mm"};
-    public ArrayList<String> medidas = new ArrayList<String>();
+    public ArrayList<String> medidas = new ArrayList<>();
     private BigDecimal valorInicial;
 
     public ConversorMedidas(){

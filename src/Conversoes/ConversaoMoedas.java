@@ -14,7 +14,6 @@ public class ConversaoMoedas{
     private BigDecimal cotacaoLibra = new BigDecimal(6.46);
     private BigDecimal cotacaoYene = new BigDecimal(0.04);
     private BigDecimal cotacaoDolarAustraliano = new BigDecimal(3.63);
-
     
     public BigDecimal converter(String valor, String moeda){
 
