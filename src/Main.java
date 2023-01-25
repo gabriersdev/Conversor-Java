@@ -1,12 +1,6 @@
 import Utilitarios.Empty;
-
 import java.math.BigDecimal;
-
-import javax.swing.text.StyledEditorKit.BoldAction;
-
-import Conversoes.ConversaoMoedas;
-import Conversoes.ConversorMedidas;
-import Conversoes.ConversorTemperatura;
+import java.util.List;
 import Modal.Modal;
 
 public class Main {
@@ -19,77 +13,44 @@ public class Main {
             String[] opcoes = { "Conversor de moedas", "Conversor de medidas", "Conversor de temperatura"};
             String input = Modal.opcoesSelecao(opcoes, 0);
             
-            Boolean tudoCerto = !Empty.isEmpty(input);
+            boolean ConversaoSelecionada = !Empty.isEmpty(input);
             
             String opcaoSelecionada = "";
             String categoria = "";
+            Funcao funcao = new Funcao();
             
-            if(tudoCerto){
-                switch(input){
-                    case "Conversor de moedas":
-                    categoria = "moedas";
-                    String[] opcoesConversaoMoedas = {"De Real para Euro", "De Real para Libra", "De Real para Dólar Americano", "De Real para Yene", "De Real para Dólar Australiano"};
-                    opcaoSelecionada = Modal.opcoesSelecao(opcoesConversaoMoedas, 0);
-                    break;
-                    
-                    case "Conversor de medidas":
-                    categoria = "medidas";
-                    String[] opcoesConversaoMedidas = {"Quilômetros para Metros", "Quilômetros para Centímetros", "Metros para Quilômetros", "Metros para Centímetros", "Centímetros para Quilômetros", "Centímetros para Metros"};
-                    opcaoSelecionada = Modal.opcoesSelecao(opcoesConversaoMedidas, 0);
-                    break;
-                    
-                    case "Conversor de temperatura":
-                    categoria = "temperatura";
-                    String[] opcoesConversaoTemperatura = {"Celsius para Kelvin", "Celsius para Fahrenheit", "Kelvin para Celsius", "Kelvin para Fahrenheit", "Fahrenheit para Celsius", "Fahrenheit para Kelvin"};
-                    opcaoSelecionada = Modal.opcoesSelecao(opcoesConversaoTemperatura, 0);
-                    break;
-                }                
+            if(ConversaoSelecionada){
+                List<String> retorno = funcao.exibirOpcoesConversao(input);
+                opcaoSelecionada = retorno.get(0);
+                categoria = retorno.get(1);
             }
             
             if(!Empty.isEmpty(opcaoSelecionada) && !Empty.isEmpty(categoria)){
                 
-                Boolean valorInformado = false;
-
+                boolean valorInformado = false;
+                
                 while(!valorInformado){
                     String valor = Modal.caixaDeEntrada("Insira um valor");
-                    valor = valor.replaceAll(",", "");
                     
-                    System.out.println(opcaoSelecionada);
-                    System.out.println(categoria);
+                    if(Empty.isNull(valor)){
+                        valorInformado = true;
+                    }
                     
-                    if(!Empty.isEmpty(valor)){
+                    else if (!Empty.isEmpty(valor)){
+                        valor = valor.replaceAll(",", ".");
                         
-                        //Verificar de onde veio a conversao e pra que deve ser convertido o valor inserido 
+                        //Verificar de onde veio a conversao e pra que deve ser convertido o valor inserido
                         try{
                             BigDecimal novoValor = new BigDecimal(valor);
-    
-                            switch(categoria){
-                                case "moedas":
-                                ConversaoMoedas conversaoMoedas = new ConversaoMoedas();
-                                Modal.mensagem("O valor da conversão é " + conversaoMoedas.converter(novoValor, opcaoSelecionada));
-                                break;
-
-                                case "medidas":
-                                ConversorMedidas conversorMedidas = new ConversorMedidas();
-                                Modal.mensagem("O valor da conversão é " + conversorMedidas.converter(novoValor, opcaoSelecionada));
-                                break;
-                                
-                                case "temperatura":
-                                ConversorTemperatura conversorTemperatura = new ConversorTemperatura();
-                                Modal.mensagem("O valor da conversão é " + conversorTemperatura.converter(novoValor, opcaoSelecionada));
-                                break;
-                            }
-
-                            valorInformado = true;
-    
+                            valorInformado = funcao.fazerConversao(novoValor);
+                            
                         }catch(NumberFormatException excecao) {
-                            Modal.messageError("Conversor", "O valor informado é inválido");
-                            valorInformado = false;
+                            Modal.messageError("O valor informado é inválido");
                         }
-                        
-                    }else{
-                        Modal.messageError("Conversor", "Informe um valor!");
-                        valorInformado = false;
+                    }
+                    
+                    else{
+                        Modal.messageError("Informe um valor!");
                     }
                 }
                 

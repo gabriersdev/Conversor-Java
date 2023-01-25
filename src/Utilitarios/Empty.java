@@ -2,10 +2,14 @@ package Utilitarios;
 
 public class Empty {
     public static boolean isEmpty(String string){
-        if(string == null || string.length() == 0){
-            return true;
-        }else{
-            return false;
-        }
+        return (string == null || string.length() == 0);
+    }
+
+    public static boolean isClear(String string){
+        return (string.length() == 0);
+    }
+
+    public static boolean isNull(String string){
+        return (string == null);
     }
 }
