@@ -43,5 +43,5 @@ Entre unidades de temperatura:
 </ul>
 
 Para conferir baixar e executar o projeto sem burocarcia
-acesse: <a href='https://gabrieszin.github.io/home-page-Conversor/' target='blank'>https://gabrieszin.github.io/home-page-Conversor/ </a>
+acesse: <a href='https://gabriersdev.github.io/home-page-Conversor/' target='blank'>https://gabrieszin.github.io/home-page-Conversor/ </a>
 <p>
