@@ -1,5 +1,7 @@
 # Challenge ONE | Java - Conversor de Moedas, Medidas e Temperatura
 
+![Captura de tela do menu principal do projeto](./example.png)
+
 <p>
 Este projeto é um Conversor de Moedas, Medidas e Temperatura desenvolvido por mim, Gabriel Ribeiro, para o primeiro Challenge da Trilha de Java do Programa Oracle ONE.
 
